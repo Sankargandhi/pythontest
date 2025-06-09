@@ -18,6 +18,23 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Make deploy/rollback scripts executable
+      run: |
+        chmod +x ./deploy.sh
+        
+    - name: Try Deploy (with retries)
+      id: deploy
+      run: |
+        MAX_RETRIES=2
+        for i in $(seq 0 $MAX_RETRIES); do
+          echo "🚀 Attempt $((i+1)) to deploy..."
+          ./deploy.sh && exit 0
+          echo "❌ Attempt $((i+1)) failed"
+          sleep 10
+        done
+        echo "Deployment failed after $((MAX_RETRIES+1)) attempts"
+        exit 1
+
     - name: Notify MS Teams
       if: always()
       run: |
