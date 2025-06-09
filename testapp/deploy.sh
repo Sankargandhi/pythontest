@@ -6,7 +6,11 @@ set -e
 echo "🚀 Starting deployment to EC2..."
 
 # Write the SSH key to a file (GitHub Action passes via env var)
-echo "$EC2_SSH_KEY" > ec2_key.pem
+
+echo "Creating PEM file"
+printf "%s\n" "$EC2_SSH_KEY" > ec2_key.pem
+
+echo "Changing the mode"
 chmod 600 ec2_key.pem
 
 # Connect and deploy
