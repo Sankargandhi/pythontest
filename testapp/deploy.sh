@@ -16,11 +16,13 @@ printf "%s\n" "$EC2_SSH_KEY" > ec2_key.pem
 # Connect and deploy
 
 echo "key"
-echo ec2_key.pem
+echo "$EC2_SSH_KEY"
 echo "user"
-echo $EC2_USER
+echo "$EC2_USER"
 echo "host"
-echo $EC2_HOST
+echo "$EC2_HOST"
+echo "pem"
+echo "$ec2_key.pem"
 
 ssh -i ec2_key.pem -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << 'EOF'
   set -e
