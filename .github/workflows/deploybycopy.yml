@@ -18,12 +18,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: 📂 List files after checkout
+    - name: List files after checkout
       run: ls -la
       
     - name: Make deploy/rollback scripts executable
       run: |
-        chmod +x ./deploy.sh
+        chmod +x ./testapp/deploy.sh
         
     - name: Try Deploy (with retries)
       id: deploy
@@ -31,7 +31,7 @@ jobs:
         MAX_RETRIES=2
         for i in $(seq 0 $MAX_RETRIES); do
           echo "🚀 Attempt $((i+1)) to deploy..."
-          ./deploy.sh && exit 0
+          ./testapp/deploy.sh && exit 0
           echo "❌ Attempt $((i+1)) failed"
           sleep 10
         done
