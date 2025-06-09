@@ -27,7 +27,7 @@ jobs:
         **👤 Triggered by:** ${{ github.actor }}  \n\
         **📝 Commit Message:** ${{ github.event.head_commit.message }}  \n\
         **🕒 Time:** $(date '+%Y-%m-%d %H:%M:%S')  \n\
-        **📁 Repository:** [${{ github.repository }}](https://github.com/${{ github.repository }})"
+        **📁 Repository:** [${{ github.repository }}](https://github.com/${{ github.repository }})"          
         curl -H 'Content-Type: application/json' \
-          -d '{"text": "🚀 Deployment started for `${{ github.repository }}` by `${{ github.actor }}`"}' \
-          ${{ secrets.MS_TEAMS_WEBHOOK_URL }}
+             -d "{\"text\": \"$MESSAGE\"}" \
+             ${{ secrets.MS_TEAMS_WEBHOOK_URL }}
