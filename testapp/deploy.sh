@@ -15,14 +15,12 @@ printf "%s\n" "$EC2_SSH_KEY" > ec2_key.pem
 
 # Connect and deploy
 
-echo "key"
-echo "$EC2_SSH_KEY"
-echo "user"
-echo "$EC2_USER"
-echo "host"
-echo "$EC2_HOST"
-echo "pem"
-echo "$ec2_key.pem"
+# Debug info (don't print full private key!)
+echo "🔐 EC2_USER: $EC2_USER"
+echo "🌐 EC2_HOST: $EC2_HOST"
+
+# Optional: Show first few characters of key for sanity check
+echo "🔑 EC2_SSH_KEY starts with: $(echo "$EC2_SSH_KEY" | head -n 1)"
 
 ssh -i ec2_key.pem -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << 'EOF'
   set -e
