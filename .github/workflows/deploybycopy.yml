@@ -23,7 +23,14 @@ jobs:
       
     - name: Make deploy/rollback scripts executable
       run: |
+        export EC2_SSH_KEY="${{ secrets.EC2_SSH_KEY }}"
+        export EC2_USER="${{ secrets.EC2_USER }}"
+        export EC2_HOST="${{ secrets.EC2_HOST }}"      
         chmod +x ./testapp/deploy.sh
+      env:
+        EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+        EC2_USER: ${{ secrets.EC2_USER }}
+        EC2_HOST: ${{ secrets.EC2_HOST }}        
         
     - name: Try Deploy (with retries)
       id: deploy
