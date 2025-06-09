@@ -9,9 +9,7 @@ echo "🚀 Starting deployment to EC2"
 
 echo "Creating PEM file"
 printf "%s\n" "$EC2_SSH_KEY" > ec2_key.pem
-
-
-#chmod 600 ec2_key.pem
+chmod 600 ec2_key.pem
 
 # Connect and deploy
 
