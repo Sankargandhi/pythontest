@@ -3,7 +3,7 @@
 # Fail the script on any error
 set -e
 
-echo "🚀 Starting deployment to EC2...."
+echo "🚀 Starting deployment to EC2"
 
 # Write the SSH key to a file (GitHub Action passes via env var)
 
