@@ -14,7 +14,9 @@ chmod 600 ec2_key.pem
 # Optional: Show first few characters of key for sanity check
 set -e
 echo "Coping the code"
-rsync -avz -e "ssh -i ec2_key.pem -o StrictHostKeyChecking=no" ./ $EC2_USER@$EC2_HOST:/home/$EC2_USER/main-code
+
+sshpass -p "$EC2_PASSWORD" scp -o StrictHostKeyChecking=no ./myfile.txt "$EC2_USER@$EC2_HOST:/home/$EC2_USER/main-code"
+
 echo "✅ Deployment completed."
 
 EXIT_CODE=$?
@@ -24,3 +26,5 @@ rm -f ec2_key.pem
 
 # Return proper exit code to GitHub Actions
 exit $EXIT_CODE
+
+
