@@ -25,6 +25,5 @@ EXIT_CODE=$?
 rm -f ec2_key.pem
 
 # Return proper exit code to GitHub Actions
+
 exit $EXIT_CODE
-
-
