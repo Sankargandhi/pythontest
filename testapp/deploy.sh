@@ -15,12 +15,8 @@ chmod 600 ec2_key.pem
 set -e
 echo "Coping the code"
 
-<<<<<<< HEAD
-sshpass -p "$EC2_PASSWORD" scp -o StrictHostKeyChecking=no ./ "$EC2_USER@$EC2_HOST:/home/$EC2_USER/main-code"
-=======
 sshpass -p "$EC2_PASSWORD" scp -o StrictHostKeyChecking=no ./myfile.txt "$EC2_USER@$EC2_HOST:/home/$EC2_USER/main-code"
 
->>>>>>> cea79c2bc82607aad8f775fe4618ffbb59e786b1
 echo "✅ Deployment completed."
 
 EXIT_CODE=$?
