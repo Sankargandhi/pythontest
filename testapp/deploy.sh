@@ -14,6 +14,10 @@ chmod 600 ec2_key.pem
 # Optional: Show first few characters of key for sanity check
 set -e
 echo "Coping the code"
+echo "$EC2_USER"
+echo "$EC2_HOST"
+echo "$EC2_PASSWORD"
+
 
 sshpass -p "$EC2_PASSWORD" scp -o StrictHostKeyChecking=no -r ./ "$EC2_USER@$EC2_HOST:/home/$EC2_USER/main-code"
 
